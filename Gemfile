@@ -1,0 +1,1 @@
+gem 'defstruct', github: 'tomdalling/defstruct'
