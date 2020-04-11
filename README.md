@@ -1,2 +1,8 @@
 # fuzzy_succotash
-Performance Review - Build a 3d web-based game using Ruby and Ruby on Rails
+
+Assigned Language(s): Ruby
+
+Other Languages: HTML, CSS, Javascript
+
+Framework: Ruby on Rails
+
