@@ -1,9 +1,14 @@
 require 'gosu'
 require_relative 'defstruct' #defstruct allows for default values whereas most ruby structs don't. 
 
+#Fuzzy = Game Character (Dog)
 GameState = DefStruct.new{{
 	scroll_x: 0,
+	fuzzy_y: 300,
+	fuzzy_vel_y: 0, #Zero is the starting point on ground (not jumping, hence 0)
 }}
+#Gravity is essentially acceleration of fuzzy - measured by pixels/sˆ2 (sqrd)
+GRAVITY = 50 
 
 class GameWindow < Gosu::Window
 	def initialize(*args)
@@ -20,7 +25,7 @@ class GameWindow < Gosu::Window
 		@state = {
 
 		}
-	def button_down(button) #checks if the button id is pressed.  
+	def button_down(button) #checks that the button id is pressed.  
 		close if button == Gosu::KbEscape
 	end
 
@@ -30,13 +35,17 @@ class GameWindow < Gosu::Window
 		if	@state.scroll_x > @images[:foreground].width
 			@state.scroll_x = 0
 		end
+		
+		delay = update_interval / 1000.0
+		@state.fuzzy_vel_y += GRAVITY * delay
+		@state.fuzzy_y += @state.fuzzy_vel_y * delay
 	end
 
 	def draw
 		@images[:background].draw(0,0,0)
 		@images[:foreground].draw(-@state.scroll_x,0,0)
 		@images[:foreground].draw(-@state.scroll_x + @images[:foreground].width,0,0)
-		@images[:fuzzy].draw(0,0,0)
+		@images[:fuzzy].draw(20,@state.fuzzy_y,0)
 	end
 end
 
