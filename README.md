@@ -6,4 +6,4 @@ Other Languages: HTML, CSS, Javascript
 
 Framework: Ruby on Rails
 
-**This project is incomplete!!**
+**This project is incomplete**
